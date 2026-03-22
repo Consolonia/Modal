@@ -41,8 +41,9 @@
                     EnableHyperlinks="true"
                     EnableTextDragDrop = "true"
                     EnableRectangularSelection = "False"
-                    ShowBoxForControlCharacters = "true"
                     EnableVirtualSpace="False"
+                    LineHeightFactor="1"
+                    ShowBoxForControlCharacters = "true"
                     HighlightCurrentLine = "true"/>
             </AvalonEdit:TextEditor.Options>
 
