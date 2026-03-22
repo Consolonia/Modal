@@ -18,7 +18,7 @@ namespace ConsoloniaEdit
             return AppBuilder.Configure<App>()
                 .UseConsolonia()
                 .UseAutoDetectedConsole()
-                .WithDeveloperTools()
+                //.WithDeveloperTools()
                 .LogToException();
         }
     }
