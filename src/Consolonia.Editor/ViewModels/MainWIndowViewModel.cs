@@ -5,9 +5,9 @@ using AvaloniaEdit.TextMate;
 using ReactiveUI;
 using TextMateSharp.Grammars;
 
-namespace ConsoloniaEdit.Demo.ViewModels;
+namespace Consolonia.Editor.ViewModels;
 
-public class MainWindowViewModel(TextMate.Installation _textMateInstallation, RegistryOptions _registryOptions) : ReactiveObject
+public class MainWindowViewModel(TextMate.Installation textMateInstallation, RegistryOptions registryOptions) : ReactiveObject
 {
     public ObservableCollection<ThemeViewModel> AllThemes { get; set; } = [];
     private ThemeViewModel? _selectedTheme;
@@ -18,7 +18,7 @@ public class MainWindowViewModel(TextMate.Installation _textMateInstallation, Re
         set
         {
             this.RaiseAndSetIfChanged(ref _selectedTheme, value);
-            _textMateInstallation.SetTheme(_registryOptions.LoadTheme(value.ThemeName));
+            textMateInstallation.SetTheme(registryOptions.LoadTheme(value.ThemeName));
         }
     }
 

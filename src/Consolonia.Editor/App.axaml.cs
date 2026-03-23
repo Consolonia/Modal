@@ -1,9 +1,8 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using ConsoloniaEdit.Demo;
 
-namespace ConsoloniaEdit;
+namespace Consolonia.Editor;
 
 public partial class App : Application
 {

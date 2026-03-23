@@ -6,19 +6,18 @@ using AvaloniaEdit;
 using AvaloniaEdit.Document;
 using AvaloniaEdit.Folding;
 using AvaloniaEdit.TextMate;
-using Consolonia.AvaloniaEdit;
-using ConsoloniaEdit.Demo.Resources;
-using ConsoloniaEdit.Demo.ViewModels;
+using Consolonia.Editor.ViewModels;
+using Consolonia.Editor.Resources;
 using TextMateSharp.Grammars;
 
 // ReSharper disable UnusedParameter.Local
 // ReSharper disable UnusedMember.Local
-namespace ConsoloniaEdit.Demo
+namespace Consolonia.Editor
 {
     public partial class MainWindow : Window
     {
         private readonly TextEditor _textEditor;
-        private FoldingManager _foldingManager;
+        private FoldingManager? _foldingManager;
         private readonly TextMate.Installation _textMateInstallation;
         private ComboBox _syntaxModeCombo;
         private TextBlock _statusTextBlock;
@@ -32,7 +31,7 @@ namespace ConsoloniaEdit.Demo
             // this.AttachDevTools();
 
             _textEditor = this.FindControl<TextEditor>("Editor")!;
-            _textEditor.TextArea.IndentationStrategy = new AvaloniaEdit.Indentation.CSharp.CSharpIndentationStrategy(_textEditor.Options);
+            _textEditor.TextArea.IndentationStrategy = new global::AvaloniaEdit.Indentation.CSharp.CSharpIndentationStrategy(_textEditor.Options);
             _textEditor.TextArea.Caret.PositionChanged += Caret_PositionChanged;
             _textEditor.TextArea.RightClickMovesCaret = true;
 
@@ -45,7 +44,7 @@ namespace ConsoloniaEdit.Demo
 
             Language csharpLanguage = _registryOptions.GetLanguageByExtension(".cs");
 
-            _syntaxModeCombo = this.FindControl<ComboBox>("syntaxModeCombo")!;
+            _syntaxModeCombo = this.FindControl<ComboBox>("SyntaxModeCombo")!;
             _syntaxModeCombo.ItemsSource = _registryOptions.GetAvailableLanguages();
             _syntaxModeCombo.SelectedItem = csharpLanguage;
             _syntaxModeCombo.SelectionChanged += SyntaxModeCombo_SelectionChanged;
@@ -57,17 +56,17 @@ namespace ConsoloniaEdit.Demo
 
             _statusTextBlock = this.Find<TextBlock>("StatusText")!;
 
-            var mainWindowVM = new MainWindowViewModel(_textMateInstallation, _registryOptions);
+            var mainWindowVm = new MainWindowViewModel(_textMateInstallation, _registryOptions);
             foreach (ThemeName themeName in Enum.GetValues<ThemeName>())
             {
                 var themeViewModel = new ThemeViewModel(themeName);
-                mainWindowVM.AllThemes.Add(themeViewModel);
+                mainWindowVm.AllThemes.Add(themeViewModel);
                 if (themeName == ThemeName.LightPlus)
                 {
-                    mainWindowVM.SelectedTheme = themeViewModel;
+                    mainWindowVm.SelectedTheme = themeViewModel;
                 }
             }
-            DataContext = mainWindowVM;
+            DataContext = mainWindowVm;
         }
 
         private void TextMateInstallationOnAppliedTheme(object? sender, TextMate.Installation e)
@@ -140,6 +139,7 @@ namespace ConsoloniaEdit.Demo
 
         bool ApplyBrushAction(TextMate.Installation e, string colorKeyNameFromJson, Action<IBrush> applyColorAction)
         {
+            ArgumentNullException.ThrowIfNull(applyColorAction);
             if (!e.TryGetThemeColor(colorKeyNameFromJson, out var colorString))
                 return false;
 

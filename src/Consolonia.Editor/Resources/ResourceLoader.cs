@@ -1,23 +1,22 @@
 using System.Reflection;
 
-namespace ConsoloniaEdit.Demo.Resources
+namespace Consolonia.Editor.Resources;
+
+internal class ResourceLoader
 {
-    internal class ResourceLoader
+    private const string SampleFilesPrefix = "Consolonia.Editor.Resources.SampleFiles.";
+
+    internal static string LoadSampleFile(string fileName)
     {
-        const string SampleFilesPrefix = "Consolonia.Editor.Resources.SampleFiles.";
+        Stream? stream = typeof(ResourceLoader).GetTypeInfo().Assembly.GetManifestResourceStream(SampleFilesPrefix + fileName);
 
-        internal static string LoadSampleFile(string fileName)
+        if (stream == null)
+            return string.Empty;
+
+        using (stream)
+        using (var reader = new StreamReader(stream))
         {
-            Stream? stream = typeof(ResourceLoader).GetTypeInfo().Assembly.GetManifestResourceStream(SampleFilesPrefix + fileName);
-
-            if (stream == null)
-                return string.Empty;
-
-            using (stream)
-            using (StreamReader reader = new StreamReader(stream))
-            {
-                return reader.ReadToEnd();
-            }
+            return reader.ReadToEnd();
         }
     }
 }

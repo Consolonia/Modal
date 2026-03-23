@@ -3,7 +3,7 @@ class CSharp
     public static List<int> BubbleSort(List<int> xs)
     {
         var acc = xs.ToList();
-        var last = acc.ToList();
+        List<int> last;
         do
         {
             last = acc.ToList();

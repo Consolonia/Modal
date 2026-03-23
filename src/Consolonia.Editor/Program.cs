@@ -1,25 +1,23 @@
 // DUPFINDER_ignore
 
 using Avalonia;
-using Consolonia;
 
-namespace ConsoloniaEdit
+namespace Consolonia.Editor;
+
+public static class Program
 {
-    public static class Program
+    private static void Main(string[] args)
     {
-        private static void Main(string[] args)
-        {
-            BuildAvaloniaApp()
-                .StartWithConsoleLifetime(args);
-        }
+        BuildAvaloniaApp()
+            .StartWithConsoleLifetime(args);
+    }
 
-        public static AppBuilder BuildAvaloniaApp()
-        {
-            return AppBuilder.Configure<App>()
-                .UseConsolonia()
-                .UseAutoDetectedConsole()
-                //.WithDeveloperTools()
-                .LogToException();
-        }
+    public static AppBuilder BuildAvaloniaApp()
+    {
+        return AppBuilder.Configure<App>()
+            .UseConsolonia()
+            .UseAutoDetectedConsole()
+            //.WithDeveloperTools()
+            .LogToException();
     }
 }
