@@ -40,7 +40,6 @@
                     EnableTextDragDrop = "true"
                     EnableRectangularSelection = "False"
                     EnableVirtualSpace="False"
-                    LineHeightFactor="1"
                     ShowBoxForControlCharacters = "true"
                     HighlightCurrentLine = "true"/>
             </avalonEdit:TextEditor.Options>
