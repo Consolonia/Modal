@@ -1,0 +1,14 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+    <Import Project="$([MSBuild]::GetPathOfFileAbove('Directory.Core.Build.props', '$(MSBuildThisFileDirectory)../'))" />
+
+    <ItemGroup>
+      <PackageReference Include="Avalonia" Version="$(AvaloniaVersion)" />
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="Consolonia.Core" Version="$(ConsoloniaVersionLatest)" />
+        <PackageReference Include="Consolonia.Themes" Version="$(ConsoloniaVersionLatest)" />      
+    </ItemGroup>
+
+</Project>
