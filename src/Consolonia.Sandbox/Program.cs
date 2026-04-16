@@ -2,7 +2,7 @@
 
 using Avalonia;
 
-namespace Consolonia.Editor
+namespace Consolonia.Sandbox
 {
     public static class Program
     {
@@ -17,7 +17,6 @@ namespace Consolonia.Editor
             return AppBuilder.Configure<App>()
                 .UseConsolonia()
                 .UseAutoDetectedConsole()
-                //.WithDeveloperTools()
                 .LogToException();
         }
     }

@@ -42,8 +42,7 @@ Create a new XAML file for your modal, inheriting from `modal:ModalWindow`. Set 
                     HorizontalAlignment="Center"
                     VerticalAlignment="Center">
     <!-- The first child determines the size of the modal box -->
-    <StackPanel Margin="2" 
-                Spacing="1">
+    <StackPanel Spacing="1">
         <TextBlock Text="Are you sure you want to proceed?" />
         <StackPanel Orientation="Horizontal" Spacing="2" HorizontalAlignment="Center">
             <Button Content="OK" Click="OnOkClick" />

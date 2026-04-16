@@ -1,0 +1,19 @@
+<modal:ModalWindow xmlns="https://github.com/avaloniaui"
+                   xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                   xmlns:modal="clr-namespace:Consolonia.Modal;assembly=Consolonia.Modal"
+                   x:Class="Consolonia.Sandbox.SampleModal"
+                   Title="Sample Modal"
+                   Icon="ⓘ"
+                   HorizontalAlignment="Center"
+                   VerticalAlignment="Center"
+                   Margin="2">
+    <Grid>
+        <StackPanel Spacing="1" Margin="1">
+            <TextBlock Text="This is a modal dialog in Consolonia!" />
+            <TextBlock Text="Size is determined by this StackPanel." />
+            <Button Content="Close"
+                    Click="OnCloseClick"
+                    HorizontalAlignment="Center" />
+        </StackPanel>
+    </Grid>
+</modal:ModalWindow>

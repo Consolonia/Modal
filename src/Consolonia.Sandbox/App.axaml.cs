@@ -2,7 +2,7 @@ using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
 
-namespace Consolonia.Editor
+namespace Consolonia.Sandbox
 {
     public class App : Application
     {
