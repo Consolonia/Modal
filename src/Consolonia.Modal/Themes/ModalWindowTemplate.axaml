@@ -42,10 +42,12 @@
                         <Panel Background="{DynamicResource ModalWindowOuterBorderBackgroundBrush}"
                                HorizontalAlignment="Center"
                                VerticalAlignment="Center">
+                            <!-- ReSharper disable Xaml.StyleClassNotFound -->
                             <Border BorderThickness="{TemplateBinding BorderThickness}"
                                     Margin="{DynamicResource ConsoloniaModalWindowBorderMargin}"
                                     Classes="ModalWindowBorder"
                                     BorderBrush="{TemplateBinding BorderBrush}">
+                                <!-- ReSharper restore Xaml.StyleClassNotFound -->
                                 <Control
                                     Width="{Binding Path=ContentSize.Width, RelativeSource={RelativeSource TemplatedParent}}"
                                     Height="{Binding Path=ContentSize.Height, RelativeSource={RelativeSource TemplatedParent}}"
