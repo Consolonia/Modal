@@ -1,0 +1,75 @@
+<Styles xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:modal="clr-namespace:Consolonia.Modal"
+        xmlns:brushes="https://github.com/consolonia">
+    <StyleInclude Source="avares://Consolonia.Modal/Themes/ModalWindowTemplate.axaml" />
+    <Styles.Resources>
+        <ResourceDictionary>
+            <StaticResource x:Key="ModalWindowOuterBorderBackgroundBrush" ResourceKey="ThemeBackgroundBrush"/>
+            <ControlTheme x:Key="{x:Type modal:ModalWindowHeader}"
+                          TargetType="modal:ModalWindowHeader">
+                <Setter Property="Template">
+                    <ControlTemplate>
+                        <Panel>
+                            <!--Title Text-->
+                            <StackPanel HorizontalAlignment="Center"
+                                        VerticalAlignment="Top"
+                                        Margin="{DynamicResource ConsoloniaModalWindowBorderMargin}"
+                                        ZIndex="10"
+                                        Orientation="Horizontal">
+                                <brushes:SymbolsControl Text=" "
+                                                        Foreground="{TemplateBinding BorderBrush}" />
+                                <TextBlock Text="{TemplateBinding Title}"
+                                           Foreground="{TemplateBinding Foreground}" />
+                                <brushes:SymbolsControl Text=" "
+                                                        Foreground="{TemplateBinding BorderBrush}" />
+                            </StackPanel>
+
+                            <!--Buttons-->
+                            <StackPanel Orientation="Horizontal"
+                                        ZIndex="10"
+                                        VerticalAlignment="Top"
+                                        Margin="{DynamicResource ConsoloniaModalWindowBorderMargin}"
+                                        IsVisible="{TemplateBinding IsCloseButtonVisible}">
+                                <StackPanel.Styles>
+                                    <Style Selector="Button">
+                                        <Setter Property="Foreground"
+                                                Value="{DynamicResource ThemeActionBackgroundBrush}" />
+                                        <Setter Property="IsTabStop"
+                                                Value="False" />
+                                        <Setter Property="Theme"
+                                                Value="{DynamicResource ThemeNakedButton}" />
+                                    </Style>
+                                    <Style Selector="brushes|SymbolsControl">
+                                        <Setter Property="Foreground"
+                                                Value="{DynamicResource ThemeBorderBrush}" />
+                                    </Style>
+                                </StackPanel.Styles>
+                                <DockPanel Margin="2,0,0,0">
+                                    <brushes:SymbolsControl DockPanel.Dock="Left"
+                                                            Text="[" />
+                                    <brushes:SymbolsControl DockPanel.Dock="Right"
+                                                            Text="]" />
+                                    <Button Content="■"
+                                            x:Name="PART_CloseButton"
+                                            Command="{Binding Path=CloseClick, RelativeSource={RelativeSource AncestorType=modal:ModalWindow}}" />
+                                </DockPanel>
+                            </StackPanel>
+                        </Panel>
+                    </ControlTemplate>
+                </Setter>
+            </ControlTheme>
+            <ControlTheme x:Key="{x:Type modal:ModalWindow}"
+                          TargetType="modal:ModalWindow"
+                          BasedOn="{StaticResource {x:Type modal:ModalWindow}}">
+                <ControlTheme.Resources>
+                    <brushes:LineBrush x:Key="ModalWindowBorderBrush"
+                                       LineStyle="DoubleLine"
+                                       Brush="{StaticResource ThemeBorderBrush}" />
+                </ControlTheme.Resources>
+                <Setter Property="BorderBrush"
+                        Value="{StaticResource ModalWindowBorderBrush}" />
+            </ControlTheme>
+        </ResourceDictionary>
+    </Styles.Resources>
+</Styles>

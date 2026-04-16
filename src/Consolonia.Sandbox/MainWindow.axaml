@@ -1,0 +1,9 @@
+<Window xmlns="https://github.com/avaloniaui"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="Sandbox Modal Demo"
+        x:Class="Consolonia.Sandbox.MainWindow">
+    <StackPanel HorizontalAlignment="Center" VerticalAlignment="Center" Spacing="1">
+        <TextBlock Text="Welcome to Consolonia Modal Sandbox!" HorizontalAlignment="Center"/>
+        <Button Content="Show Modal" Click="OnShowModalClick" HorizontalAlignment="Center"/>
+    </StackPanel>
+</Window>
