@@ -21,5 +21,11 @@ namespace Consolonia.Sandbox
             var modal = new SampleModal();
             await modal.ShowModalAsync(this);
         }
+
+        private async void OnShowModalClick2(object? sender, RoutedEventArgs e)
+        {
+            var modal = new SampleModal2();
+            await modal.ShowModalAsync(this);
+        }
     }
 }
