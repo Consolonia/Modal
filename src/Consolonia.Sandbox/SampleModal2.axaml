@@ -1,18 +1,19 @@
 <modal:ModalWindow xmlns="https://github.com/avaloniaui"
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:modal="clr-namespace:Consolonia.Modal;assembly=Consolonia.Modal"
+                   xmlns:local="clr-namespace:Consolonia.Sandbox"
                    x:Class="Consolonia.Sandbox.SampleModal2"
-                   Title="Sample Modal 2"
-                   Icon="ⓘ"
+                   Title="{x:Static local:SandboxText.Modal2Title}"
+                   Icon="{x:Static local:SandboxText.ModalIcon}"
                    HorizontalAlignment="Stretch"
                    VerticalAlignment="Stretch"
                    Margin="2">
     <Grid>
         <StackPanel Spacing="1"
                     Margin="1">
-            <TextBlock Text="This is a modal dialog in Consolonia!" />
-            <TextBlock Text="Size is just full screen with padding" />
-            <Button Content="Close"
+            <TextBlock Text="{x:Static local:SandboxText.ModalCommonText}" />
+            <TextBlock Text="{x:Static local:SandboxText.FullScreenModalText}" />
+            <Button Content="{x:Static local:SandboxText.ModalCloseButton}"
                     Click="OnCloseClick"
                     HorizontalAlignment="Center" />
         </StackPanel>
