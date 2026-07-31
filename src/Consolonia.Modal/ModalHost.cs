@@ -53,6 +53,7 @@ namespace Consolonia.Modal
         {
             IInputElement focusedElement = _window.FocusManager! /*todo: low: Why can be null?*/.GetFocusedElement();
             var overlayLayer = OverlayLayer.GetOverlayLayer(_window);
+            
             var popup = new Popup
             {
                 PlacementGravity = PopupGravity.BottomRight,
@@ -60,6 +61,8 @@ namespace Consolonia.Modal
                 Placement = PlacementMode.AnchorAndGravity,
                 ShouldUseOverlayLayer = true
             };
+            
+            overlayLayer.Children.Add(popup);
 
 
             var modalWrap = new ModalWrap();
@@ -72,6 +75,7 @@ namespace Consolonia.Modal
             modalWrap.HadFocusOn = focusedElement;
 
             _modals.Push(popup);
+            
             popup.Open();
 
             modalWindow.AttachedToVisualTree += ModalAttachedToVisualTree;
@@ -87,7 +91,7 @@ namespace Consolonia.Modal
 
         private ContentPresenter GetFirstContentPresenter()
         {
-            ContentPresenter firstContentPresenter = _window.GetTemplateChildren()
+            ContentPresenter firstContentPresenter = _window.GetTemplateDescendants()
                 .Select(control => control.FindDescendantOfType<ContentPresenter>())
                 .First(d => d!.Name == "PART_ContentPresenter");
             return firstContentPresenter;
