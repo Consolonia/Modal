@@ -21,7 +21,7 @@ namespace Consolonia.Modal
         internal static readonly AttachedProperty<ModalHost> ModalHostProperty =
             AvaloniaProperty.RegisterAttached<Control, ModalHost>("ModalHost", typeof(ModalHost));
 
-        private readonly Stack<OverlayPopupHost> _modals = new();
+        private readonly Stack<Popup> _modals = new();
 
         private readonly Window _window;
 
@@ -53,22 +53,26 @@ namespace Consolonia.Modal
         {
             IInputElement focusedElement = _window.FocusManager! /*todo: low: Why can be null?*/.GetFocusedElement();
             var overlayLayer = OverlayLayer.GetOverlayLayer(_window);
-            var popupHost = new OverlayPopupHost(overlayLayer!);
+            var popup = new Popup
+            {
+                PlacementGravity = PopupGravity.BottomRight,
+                PlacementAnchor = PopupAnchor.TopLeft,
+                Placement = PlacementMode.AnchorAndGravity,
+                ShouldUseOverlayLayer = true
+            };
 
-            popupHost.ConfigurePosition(_window, PlacementMode.AnchorAndGravity,
-                new Point(), PopupAnchor.TopLeft, PopupGravity.BottomRight);
 
             var modalWrap = new ModalWrap();
             modalWrap.SetContent(modalWindow);
-            popupHost.SetChild(modalWrap);
+            popup.Child = modalWrap;
             GetFirstContentPresenter().IsEnabled = false;
 
-            if (_modals.TryPeek(out OverlayPopupHost previousModal)) previousModal.IsEnabled = false;
+            if (_modals.TryPeek(out Popup previousModal)) previousModal.IsEnabled = false;
 
             modalWrap.HadFocusOn = focusedElement;
 
-            _modals.Push(popupHost);
-            popupHost.Show();
+            _modals.Push(popup);
+            popup.Open();
 
             modalWindow.AttachedToVisualTree += ModalAttachedToVisualTree;
             return;
@@ -91,13 +95,13 @@ namespace Consolonia.Modal
 
         public void PopInternal(ModalWindow modalWindow)
         {
-            OverlayPopupHost overlayPopupHost = _modals.Pop();
-            var modalWrap = (ModalWrap)overlayPopupHost.Content!;
+            Popup overlayPopupHost = _modals.Pop();
+            var modalWrap = (ModalWrap)overlayPopupHost.Child!;
             if (!Equals(modalWrap!.FoundContentPresenter.Content, modalWindow!))
                 throw new InvalidOperationException("Modal is not topmost. Close private modals first");
-            overlayPopupHost.Hide();
+            overlayPopupHost.Close();
 
-            if (_modals.TryPeek(out OverlayPopupHost previousModal))
+            if (_modals.TryPeek(out Popup previousModal))
             {
                 previousModal.IsEnabled = true;
                 previousModal.Focus();
