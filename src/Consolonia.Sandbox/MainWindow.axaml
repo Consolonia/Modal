@@ -30,5 +30,8 @@ Mechanics:
         <Button Content="Show Modal"
                 Click="OnShowModalClick"
                 HorizontalAlignment="Center" />
+        <Button Content="Show Modal 2"
+                Click="OnShowModalClick2"
+                HorizontalAlignment="Center" />
     </StackPanel>
 </Window>
