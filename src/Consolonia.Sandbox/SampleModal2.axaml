@@ -2,17 +2,17 @@
                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                    xmlns:modal="clr-namespace:Consolonia.Modal;assembly=Consolonia.Modal"
                    xmlns:local="clr-namespace:Consolonia.Sandbox"
-                   x:Class="Consolonia.Sandbox.SampleModal"
-                   Title="{x:Static local:SandboxText.ModalTitle}"
+                   x:Class="Consolonia.Sandbox.SampleModal2"
+                   Title="{x:Static local:SandboxText.Modal2Title}"
                    Icon="{x:Static local:SandboxText.ModalIcon}"
-                   HorizontalAlignment="Center"
-                   VerticalAlignment="Center"
+                   HorizontalAlignment="Stretch"
+                   VerticalAlignment="Stretch"
                    Margin="2">
     <Grid>
         <StackPanel Spacing="1"
                     Margin="1">
             <TextBlock Text="{x:Static local:SandboxText.ModalCommonText}" />
-            <TextBlock Text="{x:Static local:SandboxText.SmallModalText}" />
+            <TextBlock Text="{x:Static local:SandboxText.FullScreenModalText}" />
             <Button Content="{x:Static local:SandboxText.ModalCloseButton}"
                     Click="OnCloseClick"
                     HorizontalAlignment="Center" />
