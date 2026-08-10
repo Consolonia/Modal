@@ -10,7 +10,7 @@ namespace Consolonia.Sandbox
         {
             TaskScheduler.UnobservedTaskException += (_, eventArgs) =>
                 ThreadPool.QueueUserWorkItem(_ => throw new Exception("UnobservedTaskException", eventArgs.Exception));
-            
+
             BuildAvaloniaApp()
                 .StartWithConsoleLifetime(args);
         }

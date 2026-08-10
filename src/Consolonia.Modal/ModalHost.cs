@@ -53,7 +53,7 @@ namespace Consolonia.Modal
         {
             IInputElement focusedElement = _window.FocusManager! /*todo: low: Why can be null?*/.GetFocusedElement();
             var overlayLayer = OverlayLayer.GetOverlayLayer(_window);
-            
+
             var popup = new Popup
             {
                 PlacementGravity = PopupGravity.BottomRight,
@@ -61,7 +61,7 @@ namespace Consolonia.Modal
                 Placement = PlacementMode.AnchorAndGravity,
                 ShouldUseOverlayLayer = true
             };
-            
+
             overlayLayer.Children.Add(popup);
 
 
@@ -75,7 +75,7 @@ namespace Consolonia.Modal
             modalWrap.HadFocusOn = focusedElement;
 
             _modals.Push(popup);
-            
+
             popup.Open();
 
             modalWindow.AttachedToVisualTree += ModalAttachedToVisualTree;
