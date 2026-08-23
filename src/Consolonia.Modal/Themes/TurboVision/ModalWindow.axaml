@@ -5,8 +5,22 @@
     <StyleInclude Source="avares://Consolonia.Modal/Themes/ModalWindowTemplate.axaml" />
     <Styles.Resources>
         <ResourceDictionary>
-            <StaticResource x:Key="ModalWindowOuterBorderBackgroundBrush"
-                            ResourceKey="ThemeBackgroundBrush" />
+            <ResourceDictionary.ThemeDictionaries>
+                <ResourceDictionary x:Key="Default">
+                    <StaticResource x:Key="ModalWindowOuterBorderBackgroundBrush"
+                                    ResourceKey="ThemeBackgroundBrush" />
+                    <brushes:LineBrush x:Key="ModalWindowOuterBorderBorderBrush"
+                                       LineStyle="DoubleLine"
+                                       Brush="{StaticResource ThemeBorderBrush}" />
+                </ResourceDictionary>
+                <ResourceDictionary x:Key="Dark">
+                    <StaticResource x:Key="ModalWindowOuterBorderBackgroundBrush"
+                                    ResourceKey="ThemeBackgroundBrush" />
+                    <brushes:LineBrush x:Key="ModalWindowOuterBorderBorderBrush"
+                                       LineStyle="DoubleLine"
+                                       Brush="{StaticResource ThemeBorderBrush}" />
+                </ResourceDictionary>
+            </ResourceDictionary.ThemeDictionaries>
             <ControlTheme x:Key="{x:Type modal:ModalWindowHeader}"
                           TargetType="modal:ModalWindowHeader">
                 <Setter Property="Template">
@@ -64,12 +78,10 @@
                           TargetType="modal:ModalWindow"
                           BasedOn="{StaticResource {x:Type modal:ModalWindow}}">
                 <ControlTheme.Resources>
-                    <brushes:LineBrush x:Key="ModalWindowBorderBrush"
-                                       LineStyle="DoubleLine"
-                                       Brush="{StaticResource ThemeBorderBrush}" />
+                    
                 </ControlTheme.Resources>
                 <Setter Property="BorderBrush"
-                        Value="{StaticResource ModalWindowBorderBrush}" />
+                        Value="{DynamicResource ModalWindowOuterBorderBorderBrush}" />
             </ControlTheme>
         </ResourceDictionary>
     </Styles.Resources>
