@@ -78,7 +78,7 @@
                           TargetType="modal:ModalWindow"
                           BasedOn="{StaticResource {x:Type modal:ModalWindow}}">
                 <ControlTheme.Resources>
-                    
+
                 </ControlTheme.Resources>
                 <Setter Property="BorderBrush"
                         Value="{DynamicResource ModalWindowOuterBorderBorderBrush}" />
