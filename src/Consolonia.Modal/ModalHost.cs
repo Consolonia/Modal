@@ -117,10 +117,8 @@ namespace Consolonia.Modal
                 firstContentPresenter.IsEnabled = true;
                 firstContentPresenter.Focus();
             }
-            else
-            {
-                modalWrap.HadFocusOn?.Focus();
-            }
+            
+            modalWrap.HadFocusOn?.Focus();
         }
     }
 }
