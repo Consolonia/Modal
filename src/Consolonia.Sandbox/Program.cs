@@ -20,6 +20,7 @@ namespace Consolonia.Sandbox
             return AppBuilder.Configure<App>()
                 .UseConsolonia()
                 .UseAutoDetectedConsole()
+                .ThrowOnErrors()
                 .LogToException();
         }
     }

@@ -118,7 +118,7 @@ namespace Consolonia.Modal
                 firstContentPresenter.Focus();
             }
 
-            modalWrap.HadFocusOn.Focus();
+            modalWrap.HadFocusOn?.Focus();
         }
     }
 }
